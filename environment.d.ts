@@ -5,12 +5,15 @@ export {};
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      // clerk keys
-      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: string;
-      CLERK_SECRET_KEY: string;
-
       // aiven database url
       DATABASE_URL: string;
+
+      // uploadthing keys
+      UPLOADTHING_SECRET: string;
+      UPLOADTHING_APP_ID: string;
+
+      // app base url
+      NEXT_PUBLIC_APP_BASE_URL: string;
     }
   }
 }
