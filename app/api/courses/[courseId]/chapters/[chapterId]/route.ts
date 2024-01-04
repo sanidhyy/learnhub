@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs";
 import Mux from "@mux/mux-node";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
 
@@ -10,7 +10,7 @@ const { Video } = new Mux(
 );
 
 export async function DELETE(
-  req: NextRequest,
+  _req: NextRequest,
   { params }: { params: { courseId: string; chapterId: string } }
 ) {
   try {
