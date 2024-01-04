@@ -1,12 +1,13 @@
 "use client";
 
-import { ConfirmModal } from "@/components/modals/confirm-modal";
-import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
+
+import { ConfirmModal } from "@/components/modals/confirm-modal";
+import { Button } from "@/components/ui/button";
 
 type ChapterActionsProps = {
   disabled: boolean;
