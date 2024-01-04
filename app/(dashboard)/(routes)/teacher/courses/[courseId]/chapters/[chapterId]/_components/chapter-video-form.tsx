@@ -1,9 +1,9 @@
 "use client";
 
+import MuxPlayer from "@mux/mux-player-react";
 import type { Chapter, MuxData } from "@prisma/client";
 import axios from "axios";
 import { Pencil, PlusCircle, VideoIcon } from "lucide-react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -73,7 +73,13 @@ export const ChapterVideoForm = ({
             <VideoIcon className="h-10 w-10 text-slate-500" />
           </div>
         ) : (
-          <div className="relative aspect-video mt-2">Video uploaded</div>
+          <div className="relative aspect-video mt-2">
+            <MuxPlayer
+              playbackId={initialData?.muxData?.playbackId || ""}
+              accentColor="#007DFC"
+              title={initialData?.title}
+            />
+          </div>
         ))}
       {isEditing && (
         <div>
