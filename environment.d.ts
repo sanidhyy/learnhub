@@ -14,6 +14,10 @@ declare global {
 
       // app base url
       NEXT_PUBLIC_APP_BASE_URL: string;
+
+      // mux keys
+      MUX_TOKEN_ID: string;
+      MUX_TOKEN_SECRET: string;
     }
   }
 }
