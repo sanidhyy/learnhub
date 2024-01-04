@@ -81,4 +81,10 @@ body,
   }
 }
 
+/* react quill text editor (increase font size) */
+.ql-container {
+  font-size: 16px !important;
+}
+
+/* import uploadthing styles */
 @import "~@uploadthing/react/styles.css";
