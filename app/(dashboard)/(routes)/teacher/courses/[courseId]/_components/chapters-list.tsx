@@ -4,20 +4,20 @@ import {
   DragDropContext,
   Draggable,
   Droppable,
-  type DropResult,
+  DropResult,
 } from "@hello-pangea/dnd";
-import type { Chapter } from "@prisma/client";
+import { Chapter } from "@prisma/client";
 import { Grip, Pencil } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
-type ChaptersListProps = {
+interface ChaptersListProps {
   items: Chapter[];
   onReorder: (updateData: { id: string; position: number }[]) => void;
   onEdit: (id: string) => void;
-};
+}
 
 export const ChaptersList = ({
   items,
@@ -28,18 +28,17 @@ export const ChaptersList = ({
   const [chapters, setChapters] = useState(items);
 
   useEffect(() => {
-    setChapters(items);
-  }, [items]);
-
-  useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  useEffect(() => {
+    setChapters(items);
+  }, [items]);
 
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
 
     const items = Array.from(chapters);
-
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
@@ -64,13 +63,13 @@ export const ChaptersList = ({
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="chapters">
         {(provided) => (
-          <div
-            className=""
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {chapters.map((chapter, i) => (
-              <Draggable key={chapter.id} draggableId={chapter.id} index={i}>
+          <div {...provided.droppableProps} ref={provided.innerRef}>
+            {chapters.map((chapter, index) => (
+              <Draggable
+                key={chapter.id}
+                draggableId={chapter.id}
+                index={index}
+              >
                 {(provided) => (
                   <div
                     className={cn(
@@ -91,12 +90,9 @@ export const ChaptersList = ({
                     >
                       <Grip className="h-5 w-5" />
                     </div>
-
                     {chapter.title}
-
                     <div className="ml-auto pr-2 flex items-center gap-x-2">
                       {chapter.isFree && <Badge>Free</Badge>}
-
                       <Badge
                         className={cn(
                           "bg-slate-500",
