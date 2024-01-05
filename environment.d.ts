@@ -19,8 +19,9 @@ declare global {
       MUX_TOKEN_ID: string;
       MUX_TOKEN_SECRET: string;
 
-      // stripe api key
+      // stripe api key & webhook secret
       STRIPE_API_KEY: string;
+      STRIPE_WEBHOOK_SECRET: string;
     }
   }
 }
