@@ -6,6 +6,7 @@ import type { PropsWithChildren } from "react";
 import { extractRouterConfig } from "uploadthing/server";
 
 import { appFileRouter } from "@/app/api/uploadthing/core";
+import { ConfettiProvider } from "@/components/providers/confetti-provider";
 import { ToastProvider } from "@/components/providers/toaster-provider";
 
 import "./globals.css";
@@ -23,10 +24,11 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
+          {/* confetti provider */}
+          <ConfettiProvider />
+
           {/* sonner toast */}
-          <aside>
-            <ToastProvider />
-          </aside>
+          <ToastProvider />
 
           {/* uploadthing ssr plugin to prevent hydration errors */}
           <NextSSRPlugin routerConfig={extractRouterConfig(appFileRouter)} />
