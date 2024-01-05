@@ -18,6 +18,9 @@ declare global {
       // mux keys
       MUX_TOKEN_ID: string;
       MUX_TOKEN_SECRET: string;
+
+      // stripe api key
+      STRIPE_API_KEY: string;
     }
   }
 }
