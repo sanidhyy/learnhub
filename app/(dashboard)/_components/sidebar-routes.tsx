@@ -2,6 +2,9 @@
 
 import { BarChart, Compass, Layout, List } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { FaGithub } from "react-icons/fa";
+
+import { links } from "@/config";
 
 import { SidebarItem } from "./sidebar-item";
 
@@ -38,15 +41,26 @@ const SidebarRoutes = () => {
   const routes = isTeacherPage ? teacherRoutes : guestRoutes;
 
   return (
-    <div className="flex flex-col w-full">
-      {routes.map((route) => (
+    <div className="flex flex-col flex-1 w-full justify-between">
+      <div>
+        {routes.map((route) => (
+          <SidebarItem
+            key={route.href}
+            icon={route.icon}
+            label={route.label}
+            href={route.href}
+          />
+        ))}
+      </div>
+
+      <div>
         <SidebarItem
-          key={route.href}
-          icon={route.icon}
-          label={route.label}
-          href={route.href}
+          icon={FaGithub}
+          label="Source Code"
+          href={links.sourceCode}
+          blank
         />
-      ))}
+      </div>
     </div>
   );
 };

@@ -1,7 +1,8 @@
 "use client";
 
 import type { LucideIcon } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
@@ -9,25 +10,27 @@ type SidebarItemProps = {
   icon: LucideIcon;
   label: string;
   href: string;
+  blank?: boolean;
 };
 
-export const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
+export const SidebarItem = ({
+  icon: Icon,
+  label,
+  href,
+  blank = false,
+}: SidebarItemProps) => {
   const pathname = usePathname();
-  const router = useRouter();
 
   const isActive =
     (pathname === "/" && href === "/") ||
     pathname === href ||
     pathname?.startsWith(`${href}/`);
 
-  const onClick = () => {
-    router.push(href);
-  };
-
   return (
-    <button
-      type="button"
-      onClick={onClick}
+    <Link
+      href={href}
+      target={blank ? "_blank" : "_self"}
+      rel={blank ? "noreferrer noopener" : undefined}
       className={cn(
         "flex items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20",
         isActive &&
@@ -50,6 +53,6 @@ export const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
         )}
         aria-hidden
       />
-    </button>
+    </Link>
   );
 };
