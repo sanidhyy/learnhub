@@ -9,6 +9,7 @@ import { Preview } from "@/components/preview";
 import { Separator } from "@/components/ui/separator";
 
 import { CourseEnrollButton } from "./_components/course-enroll-button";
+import { CourseProgressButton } from "./_components/course-progress-button";
 import { VideoPlayer } from "./_components/video-player";
 
 const ChapterIdPage = async ({
@@ -70,7 +71,12 @@ const ChapterIdPage = async ({
             <h2 className="text-2xl font-semibold mb-2">{chapter.title}</h2>
 
             {purchase ? (
-              <div className="">{/* TODO: add course progress button */}</div>
+              <CourseProgressButton
+                chapterId={params.chapterId}
+                courseId={params.courseId}
+                nextChapterId={nextChapter?.id}
+                isCompleted={!!userProgress?.isCompleted}
+              />
             ) : (
               <CourseEnrollButton
                 courseId={params.courseId}

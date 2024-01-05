@@ -10,7 +10,7 @@ const { Video } = new Mux(
 );
 
 export async function DELETE(
-  req: NextRequest,
+  _req: NextRequest,
   { params }: { params: { courseId: string } }
 ) {
   try {

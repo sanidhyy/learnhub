@@ -6,7 +6,7 @@ import { db } from "@/lib/db";
 import { stripe } from "@/lib/stripe";
 
 export async function POST(
-  req: NextRequest,
+  _req: NextRequest,
   { params }: { params: { courseId: string } }
 ) {
   try {
