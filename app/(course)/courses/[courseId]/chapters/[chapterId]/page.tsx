@@ -41,7 +41,7 @@ const ChapterIdPage = async ({
   const completeOnEnd = !!purchase && !userProgress?.isCompleted;
 
   return (
-    <div className="">
+    <div>
       {userProgress?.isCompleted && (
         <Banner label="You already completed this chapter." variant="success" />
       )}
@@ -86,7 +86,7 @@ const ChapterIdPage = async ({
           </div>
 
           <Separator />
-          <div className="">
+          <div>
             <Preview value={chapter.description!} />
           </div>
 
