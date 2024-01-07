@@ -148,7 +148,7 @@ learnhub/
 3. Create `.env` file in root directory.
 4. Contents of `.env`:
 
-```bash
+```env
 # .env
 
 # disabled next.js telemetry
@@ -196,7 +196,7 @@ NEXT_PUBLIC_TEACHER_ID=user_xxxxxxxxxxxxxxxxxxxxxxxxx
 
 - Replace `/sign-in`, `/sign-up`, and the redirect URLs with the actual URLs configured in your Clerk Dashboard.
 
-  ```bash
+  ```env
   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
@@ -205,7 +205,7 @@ NEXT_PUBLIC_TEACHER_ID=user_xxxxxxxxxxxxxxxxxxxxxxxxx
 
 6. MySQL DB URI
 
-- Replace <username>, <password>, <host>, and <port> in the DATABASE_URL with your Aiven MySQL database credentials.
+- Replace `<username>`, `<password>`, `<host>`, and `<port>` in the DATABASE_URL with your Aiven MySQL database credentials.
 
 ```env
 DATABASE_URL="mysql://<username>:<password>@<host>:<port>/learnhub?ssl-mode=REQUIRED"
