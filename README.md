@@ -250,7 +250,7 @@ To obtain Uploadthing keys, follow these steps:
 
 1. **Sign up for an Uploadthing account:**
 
-   - Visit [Uploadthing Signup](https://uploadthingy.com/) to create an account.
+   - Visit [Uploadthing](https://uploadthing.com/) and create an account.
 
 2. **Create a new application:**
 
