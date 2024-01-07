@@ -272,7 +272,19 @@ UPLOADTHING_APP_ID=XXXXXXXXX
 
 12. Open terminal in root directory. Run `npm install --legacy-peer-deps` or `yarn install --legacy-peer-deps`.
 
-13. Now app is fully configured 👍 and you can start using this app using `npm run dev` or `yarn dev`.
+13. **Run the Seed Script:**
+    In the same terminal, run the following command to execute the seed script:
+
+```bash
+npx ts-node scripts/seed.ts
+```
+
+This command uses `npx` to execute the TypeScript file (`scripts/seed.ts`) directly using `ts-node` and writes category data in mysql database.
+
+14. **Verify Data in Database:**
+    Once the script completes, check your MySQL database to ensure that the category data has been successfully seeded.
+
+15. Now app is fully configured 👍 and you can start using this app using `npm run dev` or `yarn dev`.
 
 **NOTE:** Please make sure to keep your API keys and configuration values secure and do not expose them publicly.
 
