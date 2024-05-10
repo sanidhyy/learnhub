@@ -314,6 +314,7 @@ You might encounter some bugs while using this app. You are more than welcome to
 
 Useful resources and dependencies that are used in LearnHub.
 
+- Thanks to CodeWithAntonio: https://codewithantonio.com/
 - [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs): ^4.29.1
 - [@hello-pangea/dnd](https://www.npmjs.com/package/@hello-pangea/dnd): ^16.5.0
 - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^3.3.3
