@@ -11,8 +11,9 @@ type PreviewProps = {
 
 export const Preview = ({ value }: PreviewProps) => {
   const ReactQuill = useMemo(
-    () => dynamic(() => import("react-quill"), { ssr: false }),
-    []
+    () =>
+      dynamic(() => import("@/components/react-quill-wrapper"), { ssr: false }),
+    [],
   );
 
   return <ReactQuill theme="bubble" value={value} readOnly />;

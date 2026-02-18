@@ -20,14 +20,19 @@ import { ImageForm } from "./_components/image-form";
 import { PriceForm } from "./_components/price-form";
 import { TitleForm } from "./_components/title-form";
 
-const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
+const CourseIdPage = async ({
+  params,
+}: {
+  params: Promise<{ courseId: string }>;
+}) => {
+  const { courseId } = await params;
   const { userId } = auth();
 
   if (!userId) return redirect("/");
 
   const course = await db.course.findUnique({
     where: {
-      id: params.courseId,
+      id: courseId,
       userId,
     },
     include: {
@@ -85,7 +90,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 
           <Actions
             disabled={!isComplete}
-            courseId={params.courseId}
+            courseId={courseId}
             isPublished={course.isPublished}
           />
         </div>

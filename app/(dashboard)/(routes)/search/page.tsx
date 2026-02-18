@@ -9,13 +9,14 @@ import { db } from "@/lib/db";
 import { Categories } from "./_components/categories";
 
 type SearchPageProps = {
-  searchParams: {
+  searchParams: Promise<{
     title: string;
     categoryId: string;
-  };
+  }>;
 };
 
 const SearchPage = async ({ searchParams }: SearchPageProps) => {
+  const { categoryId, title } = await searchParams;
   const { userId } = auth();
 
   if (!userId) return redirect("/");
@@ -28,7 +29,8 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
 
   const courses = await getCourses({
     userId,
-    ...searchParams,
+    categoryId,
+    title,
   });
 
   return (

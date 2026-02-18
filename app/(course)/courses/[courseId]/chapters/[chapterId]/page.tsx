@@ -15,8 +15,9 @@ import { VideoPlayer } from "./_components/video-player";
 const ChapterIdPage = async ({
   params,
 }: {
-  params: { courseId: string; chapterId: string };
+  params: Promise<{ courseId: string; chapterId: string }>;
 }) => {
+  const { chapterId, courseId } = await params;
   const { userId } = auth();
 
   if (!userId) return redirect("/");
@@ -31,8 +32,8 @@ const ChapterIdPage = async ({
     purchase,
   } = await getChapter({
     userId,
-    chapterId: params.chapterId,
-    courseId: params.courseId,
+    chapterId: chapterId,
+    courseId: courseId,
   });
 
   if (!chapter || !course) return redirect("/");
@@ -56,7 +57,7 @@ const ChapterIdPage = async ({
       <div className="flex flex-col max-w-4xl mx-auto pb-20">
         <div className="p-4">
           <VideoPlayer
-            chapterId={params.chapterId}
+            chapterId={chapterId}
             title={chapter.title}
             courseId={chapter.courseId}
             nextChapterId={nextChapter?.id}
@@ -72,16 +73,13 @@ const ChapterIdPage = async ({
 
             {purchase ? (
               <CourseProgressButton
-                chapterId={params.chapterId}
-                courseId={params.courseId}
+                chapterId={chapterId}
+                courseId={courseId}
                 nextChapterId={nextChapter?.id}
                 isCompleted={!!userProgress?.isCompleted}
               />
             ) : (
-              <CourseEnrollButton
-                courseId={params.courseId}
-                price={course.price!}
-              />
+              <CourseEnrollButton courseId={courseId} price={course.price!} />
             )}
           </div>
 

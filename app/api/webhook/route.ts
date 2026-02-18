@@ -7,7 +7,7 @@ import { stripe } from "@/lib/stripe";
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
-  const signature = headers().get("Stripe-Signature") as string;
+  const signature = (await headers()).get("Stripe-Signature") as string;
 
   let event: Stripe.Event;
 
@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      process.env.STRIPE_WEBHOOK_SECRET!,
     );
   } catch (error: any) {
     return new NextResponse(`Webhook Error: ${error?.message}.`, {
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
   } else {
     return new NextResponse(
       `Webhook Error: Unhandled event type ${event.type}.`,
-      { status: 200 }
+      { status: 200 },
     );
   }
 

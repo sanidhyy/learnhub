@@ -8,19 +8,20 @@ export async function PATCH(
   {
     params,
   }: {
-    params: {
+    params: Promise<{
       courseId: string;
-    };
-  }
+    }>;
+  },
 ) {
   try {
+    const { courseId } = await params;
     const { userId } = auth();
 
     if (!userId) return new NextResponse("Unauthorized.", { status: 401 });
 
     const course = await db.course.findUnique({
       where: {
-        id: params.courseId,
+        id: courseId,
         userId,
       },
     });
@@ -29,7 +30,7 @@ export async function PATCH(
 
     const unpublishedCourse = await db.course.update({
       where: {
-        id: params.courseId,
+        id: courseId,
         userId,
       },
       data: {

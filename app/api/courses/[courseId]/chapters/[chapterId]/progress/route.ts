@@ -5,9 +5,10 @@ import { db } from "@/lib/db";
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { courseId: string; chapterId: string } }
+  { params }: { params: Promise<{ courseId: string; chapterId: string }> },
 ) {
   try {
+    const { chapterId, courseId } = await params;
     const { userId } = auth();
     const { isCompleted } = await req.json();
 
@@ -17,7 +18,7 @@ export async function PUT(
       where: {
         userId_chapterId: {
           userId,
-          chapterId: params.chapterId,
+          chapterId: chapterId,
         },
       },
       update: {
@@ -25,7 +26,7 @@ export async function PUT(
       },
       create: {
         userId,
-        chapterId: params.chapterId,
+        chapterId: chapterId,
         isCompleted,
       },
     });

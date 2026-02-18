@@ -5,16 +5,17 @@ import { db } from "@/lib/db";
 
 export async function PATCH(
   _req: NextRequest,
-  { params }: { params: { courseId: string; chapterId: string } }
+  { params }: { params: Promise<{ courseId: string; chapterId: string }> },
 ) {
   try {
+    const { chapterId, courseId } = await params;
     const { userId } = auth();
 
     if (!userId) return new NextResponse("Unauthorized.", { status: 401 });
 
     const ownCourse = await db.course.findUnique({
       where: {
-        id: params.courseId,
+        id: courseId,
         userId,
       },
     });
@@ -23,14 +24,14 @@ export async function PATCH(
 
     const chapter = await db.chapter.findUnique({
       where: {
-        id: params.chapterId,
-        courseId: params.courseId,
+        id: chapterId,
+        courseId: courseId,
       },
     });
 
     const muxData = await db.muxData.findUnique({
       where: {
-        chapterId: params.chapterId,
+        chapterId: chapterId,
       },
     });
 
@@ -45,8 +46,8 @@ export async function PATCH(
 
     const publishedChapter = await db.chapter.update({
       where: {
-        id: params.chapterId,
-        courseId: params.courseId,
+        id: chapterId,
+        courseId: courseId,
       },
       data: {
         isPublished: true,

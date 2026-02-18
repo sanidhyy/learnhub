@@ -8,19 +8,20 @@ export async function PATCH(
   {
     params,
   }: {
-    params: {
+    params: Promise<{
       courseId: string;
-    };
-  }
+    }>;
+  },
 ) {
   try {
+    const { courseId } = await params;
     const { userId } = auth();
 
     if (!userId) return new NextResponse("Unauthorized.", { status: 401 });
 
     const course = await db.course.findUnique({
       where: {
-        id: params.courseId,
+        id: courseId,
         userId,
       },
       include: {
@@ -35,7 +36,7 @@ export async function PATCH(
     if (!course) return new NextResponse("Not found.", { status: 404 });
 
     const hasPublishedChapter = course.chapters.some(
-      (chapter) => chapter.isPublished
+      (chapter) => chapter.isPublished,
     );
 
     if (
@@ -49,7 +50,7 @@ export async function PATCH(
 
     const publishedCourse = await db.course.update({
       where: {
-        id: params.courseId,
+        id: courseId,
         userId,
       },
       data: {

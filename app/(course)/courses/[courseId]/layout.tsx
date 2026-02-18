@@ -9,19 +9,20 @@ import { CourseSidebar } from "./_components/course-sidebar";
 
 type CourseLayoutProps = {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     courseId: string;
-  };
+  }>;
 };
 
 const CourseLayout = async ({ children, params }: CourseLayoutProps) => {
+  const { courseId } = await params;
   const { userId } = auth();
 
   if (!userId) return redirect("/");
 
   const course = await db.course.findUnique({
     where: {
-      id: params.courseId,
+      id: courseId,
     },
     include: {
       chapters: {
