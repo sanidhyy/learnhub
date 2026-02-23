@@ -44,53 +44,19 @@
 Here is the folder structure of this app.
 
 <!--- FOLDER_STRUCTURE_START --->
-
 ```bash
 learnhub/
+  |- actions/
+    |-- get-analytics.ts
+    |-- get-chapter.ts
+    |-- get-courses.ts
+    |-- get-dashboard-courses.ts
+    |-- get-progress.ts
   |- app/
     |-- (auth)/
-        |--- (routes)/
-        |--- sign-in/[[...sign-in]]/
-        |--- sign-up/[[...sign-up]]/
-        |--- layout.tsx
-    |-- (course)/coures/[courseId]
-        |--- _components/
-        |--- chapters/[chapterId]
-          |---- _components/
-          |---- page.tsx
-        |--- layout.tsx
-        |--- page.tsx
+    |-- (course)/
     |-- (dashboard)/
-        |--- _components/
-        |--- (routes)/
-          |---- (root)/
-            |----- _components/
-            |----- page.tsx
-          |---- search/
-            |----- _components/
-            |----- page.tsx
-          |---- teacher/
-            |----- analytics/
-            |----- courses/
-            |----- create/
-            |----- layout.tsx
-          |---- layout.tsx
-        |--- layout.tsx
     |-- api/
-        |--- courses/
-          |---- [courseId]/
-            |----- attachments/
-            |----- chapters/
-            |----- checkout/
-            |----- publish/
-            |----- unpublish/
-            |----- route.ts
-          |---- route.ts
-        |--- uploadthing/
-          |---- core.ts
-          |---- route.ts
-        |--- webhook/
-          |---- route.ts
     |-- favicon.ico
     |-- globals.css
     |-- layout.tsx
@@ -101,12 +67,13 @@ learnhub/
     |-- banner.tsx
     |-- course-card.tsx
     |-- course-progress.tsx
-    |-- course-list.tsx
+    |-- courses-list.tsx
     |-- editor.tsx
     |-- file-upload.tsx
     |-- icon-badge.tsx
-    |-- navbar-routes.tsx
+    |-- navabar-routes.tsx
     |-- preview.tsx
+    |-- react-quill-wrapper.tsx
     |-- search-input.tsx
   |- config/
     |-- index.ts
@@ -123,24 +90,23 @@ learnhub/
   |- prisma/
     |-- schema.prisma
   |- public/
-    |-- logo.svg
   |- scripts/
     |-- seed.ts
-  |- .env
   |- .env.example
+  |- .env/.env.local
   |- .eslintrc.json
   |- .gitignore
+  |- bun.lock
   |- components.json
   |- environment.d.ts
   |- middleware.ts
   |- next.config.js
-  |- package-lock.json
   |- package.json
   |- postcss.config.js
   |- tailwind.config.ts
   |- tsconfig.json
+  |- vercel.ts
 ```
-
 <!--- FOLDER_STRUCTURE_END --->
 
 <br />
@@ -316,54 +282,56 @@ Useful resources and dependencies that are used in LearnHub.
 
 - Thanks to CodeWithAntonio: https://codewithantonio.com/
 <!--- DEPENDENCIES_START --->
-- [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs): ^4.29.1
-- [@hello-pangea/dnd](https://www.npmjs.com/package/@hello-pangea/dnd): ^16.5.0
-- [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^3.3.3
-- [@mux/mux-node](https://www.npmjs.com/package/@mux/mux-node): ^7.3.3
-- [@mux/mux-player-react](https://www.npmjs.com/package/@mux/mux-player-react): ^2.3.1
+- [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs): ^4.31.5
+- [@hello-pangea/dnd](https://www.npmjs.com/package/@hello-pangea/dnd): ^16.6.0
+- [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^3.10.0
+- [@mux/mux-node](https://www.npmjs.com/package/@mux/mux-node): ^7.3.5
+- [@mux/mux-player-react](https://www.npmjs.com/package/@mux/mux-player-react): ^2.9.1
 - [@prisma/client](https://www.npmjs.com/package/@prisma/client): ^5.7.1
-- [@radix-ui/react-alert-dialog](https://www.npmjs.com/package/@radix-ui/react-alert-dialog): ^1.0.5
-- [@radix-ui/react-checkbox](https://www.npmjs.com/package/@radix-ui/react-checkbox): ^1.0.4
-- [@radix-ui/react-dialog](https://www.npmjs.com/package/@radix-ui/react-dialog): ^1.0.5
-- [@radix-ui/react-dropdown-menu](https://www.npmjs.com/package/@radix-ui/react-dropdown-menu): ^2.0.6
-- [@radix-ui/react-label](https://www.npmjs.com/package/@radix-ui/react-label): ^2.0.2
-- [@radix-ui/react-popover](https://www.npmjs.com/package/@radix-ui/react-popover): ^1.0.7
-- [@radix-ui/react-progress](https://www.npmjs.com/package/@radix-ui/react-progress): ^1.0.3
-- [@radix-ui/react-separator](https://www.npmjs.com/package/@radix-ui/react-separator): ^1.0.3
-- [@radix-ui/react-slot](https://www.npmjs.com/package/@radix-ui/react-slot): ^1.0.2
-- [@tanstack/react-table](https://www.npmjs.com/package/@tanstack/react-table): ^8.11.3
+- [@radix-ui/react-alert-dialog](https://www.npmjs.com/package/@radix-ui/react-alert-dialog): ^1.1.15
+- [@radix-ui/react-checkbox](https://www.npmjs.com/package/@radix-ui/react-checkbox): ^1.3.3
+- [@radix-ui/react-dialog](https://www.npmjs.com/package/@radix-ui/react-dialog): ^1.1.15
+- [@radix-ui/react-dropdown-menu](https://www.npmjs.com/package/@radix-ui/react-dropdown-menu): ^2.1.16
+- [@radix-ui/react-label](https://www.npmjs.com/package/@radix-ui/react-label): ^2.1.8
+- [@radix-ui/react-popover](https://www.npmjs.com/package/@radix-ui/react-popover): ^1.1.15
+- [@radix-ui/react-progress](https://www.npmjs.com/package/@radix-ui/react-progress): ^1.1.8
+- [@radix-ui/react-separator](https://www.npmjs.com/package/@radix-ui/react-separator): ^1.1.8
+- [@radix-ui/react-slot](https://www.npmjs.com/package/@radix-ui/react-slot): ^1.2.4
+- [@tanstack/react-table](https://www.npmjs.com/package/@tanstack/react-table): ^8.21.3
+- [@types/node](https://www.npmjs.com/package/@types/node): ^25.2.3
+- [@types/react](https://www.npmjs.com/package/@types/react): ^19.2.14
+- [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): ^19.2.3
 - [@uploadthing/react](https://www.npmjs.com/package/@uploadthing/react): ^6.1.0
-- [axios](https://www.npmjs.com/package/axios): ^1.6.3
-- [class-variance-authority](https://www.npmjs.com/package/class-variance-authority): ^0.7.0
-- [clsx](https://www.npmjs.com/package/clsx): ^2.1.0
-- [cmdk](https://www.npmjs.com/package/cmdk): ^0.2.0
-- [lucide-react](https://www.npmjs.com/package/lucide-react): ^0.303.0
-- [next](https://www.npmjs.com/package/next): 14.0.4
-- [query-string](https://www.npmjs.com/package/query-string): ^8.1.0
-- [react](https://www.npmjs.com/package/react): ^18
-- [react-confetti](https://www.npmjs.com/package/react-confetti): ^6.1.0
-- [react-dom](https://www.npmjs.com/package/react-dom): ^18
-- [react-hook-form](https://www.npmjs.com/package/react-hook-form): ^7.49.2
-- [react-icons](https://www.npmjs.com/package/react-icons): ^4.12.0
-- [react-quill](https://www.npmjs.com/package/react-quill): ^2.0.0
-- [recharts](https://www.npmjs.com/package/recharts): ^2.10.3
-- [sonner](https://www.npmjs.com/package/sonner): ^1.3.1
-- [stripe](https://www.npmjs.com/package/stripe): ^14.11.0
-- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): ^2.2.0
-- [tailwindcss-animate](https://www.npmjs.com/package/tailwindcss-animate): ^1.0.7
-- [uploadthing](https://www.npmjs.com/package/uploadthing): ^6.1.1
-- [zod](https://www.npmjs.com/package/zod): ^3.22.4
-- [zustand](https://www.npmjs.com/package/zustand): ^4.4.7
-- [@types/node](https://www.npmjs.com/package/@types/node): ^20
-- [@types/react](https://www.npmjs.com/package/@types/react): ^18
-- [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): ^18
-- [autoprefixer](https://www.npmjs.com/package/autoprefixer): ^10.0.1
+- [@vercel/config](https://www.npmjs.com/package/@vercel/config): ^0.0.33
+- [autoprefixer](https://www.npmjs.com/package/autoprefixer): ^10.4.24
+- [axios](https://www.npmjs.com/package/axios): ^1.13.5
+- [class-variance-authority](https://www.npmjs.com/package/class-variance-authority): ^0.7.1
+- [clsx](https://www.npmjs.com/package/clsx): ^2.1.1
+- [cmdk](https://www.npmjs.com/package/cmdk): ^0.2.1
 - [eslint](https://www.npmjs.com/package/eslint): ^8
 - [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 14.0.4
+- [lucide-react](https://www.npmjs.com/package/lucide-react): ^0.574.0
+- [next](https://www.npmjs.com/package/next): 15.5.10
 - [postcss](https://www.npmjs.com/package/postcss): ^8
 - [prisma](https://www.npmjs.com/package/prisma): ^5.7.1
+- [query-string](https://www.npmjs.com/package/query-string): ^9.3.1
+- [react](https://www.npmjs.com/package/react): ^19.2.4
+- [react-confetti](https://www.npmjs.com/package/react-confetti): ^6.4.0
+- [react-dom](https://www.npmjs.com/package/react-dom): ^19.2.4
+- [react-hook-form](https://www.npmjs.com/package/react-hook-form): ^7.71.1
+- [react-icons](https://www.npmjs.com/package/react-icons): ^5.5.0
+- [react-quill](https://www.npmjs.com/package/react-quill): ^2.0.0
+- [recharts](https://www.npmjs.com/package/recharts): ^2.15.4
+- [sonner](https://www.npmjs.com/package/sonner): ^2.0.7
+- [stripe](https://www.npmjs.com/package/stripe): ^20.3.1
+- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): ^2.2.0
 - [tailwindcss](https://www.npmjs.com/package/tailwindcss): ^3.3.0
-- [typescript](https://www.npmjs.com/package/typescript): ^5
+- [tailwindcss-animate](https://www.npmjs.com/package/tailwindcss-animate): ^1.0.7
+- [typescript](https://www.npmjs.com/package/typescript): ^5.9.3
+- [uploadthing](https://www.npmjs.com/package/uploadthing): ^6.1.1
+- [zod](https://www.npmjs.com/package/zod): ^4.3.6
+- [zustand](https://www.npmjs.com/package/zustand): ^5.0.11
+
 <!--- DEPENDENCIES_END --->
 
 ## :coffee: Buy Me a Coffee
