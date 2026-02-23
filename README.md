@@ -43,6 +43,8 @@
 
 Here is the folder structure of this app.
 
+<!--- FOLDER_STRUCTURE_START --->
+
 ```bash
 learnhub/
   |- app/
@@ -139,6 +141,8 @@ learnhub/
   |- tsconfig.json
 ```
 
+<!--- FOLDER_STRUCTURE_END --->
+
 <br />
 
 ## :toolbox: Getting Started
@@ -222,7 +226,6 @@ DATABASE_URL="mysql://<username>:<password>@<host>:<port>/learnhub?ssl-mode=REQU
 - Obtain your Stripe API Key. You can find this under the "Developers" section.
 
 - Create a webhook endpoint in the Stripe Dashboard:
-
   - Navigate to the "Developers" section and then to "Webhooks."
   - Click on "Add endpoint" and enter the following details:
     - **Endpoint URL:** `http://localhost:3000/api/webhooks/stripe` (Update this URL based on your deployment environment)
@@ -249,16 +252,13 @@ NEXT_PUBLIC_APP_BASE_URL=http://localhost:3000
 To obtain Uploadthing keys, follow these steps:
 
 1. **Sign up for an Uploadthing account:**
-
    - Visit [Uploadthing](https://uploadthing.com/) and create an account.
 
 2. **Create a new application:**
-
    - Log in to your Uploadthing account.
    - Navigate to the dashboard and create a new application.
 
 3. **Get Secret and App ID:**
-
    - Once the application is created, find or generate the Secret and App ID.
 
 ```env
@@ -315,6 +315,7 @@ You might encounter some bugs while using this app. You are more than welcome to
 Useful resources and dependencies that are used in LearnHub.
 
 - Thanks to CodeWithAntonio: https://codewithantonio.com/
+<!--- DEPENDENCIES_START --->
 - [@clerk/nextjs](https://www.npmjs.com/package/@clerk/nextjs): ^4.29.1
 - [@hello-pangea/dnd](https://www.npmjs.com/package/@hello-pangea/dnd): ^16.5.0
 - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^3.3.3
@@ -363,6 +364,7 @@ Useful resources and dependencies that are used in LearnHub.
 - [prisma](https://www.npmjs.com/package/prisma): ^5.7.1
 - [tailwindcss](https://www.npmjs.com/package/tailwindcss): ^3.3.0
 - [typescript](https://www.npmjs.com/package/typescript): ^5
+<!--- DEPENDENCIES_END --->
 
 ## :coffee: Buy Me a Coffee
 
