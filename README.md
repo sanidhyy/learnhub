@@ -270,7 +270,7 @@ This command uses `npx` to execute the TypeScript file (`scripts/seed.ts`) direc
 
 ## :wrench: Stats
 
-[![Stats for LearnHub](/.github/images/stats.svg "Stats for LearnHub")](https://pagespeed-insights-svg.glitch.me/?url=https://learnhub-lms.vercel.app/ "Stats for LearnHub")
+[![Stats for LearnHub](/.github/images/stats.svg "Stats for LearnHub")](https://pagespeed.web.dev/analysis?url=https://learnhub-lms.vercel.app/ "Stats for LearnHub")
 
 ## :raised_hands: Contribute
 
