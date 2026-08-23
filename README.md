@@ -254,6 +254,14 @@ This command uses `npx` to execute the TypeScript file (`scripts/seed.ts`) direc
 
 **NOTE:** Please make sure to keep your API keys and configuration values secure and do not expose them publicly.
 
+### :raising_hand: Need Help?
+
+If you run into issues during installation or setup:
+
+- **GitHub Discussions** — [Open a Q&A discussion](https://github.com/sanidhyy/learnhub/discussions/new?category=q-a) for setup and troubleshooting help.
+- **Email** — [sanidhyyy@gmail.com](mailto:sanidhyyy@gmail.com)
+- **Discord** — `@sanidhyy`
+
 ## :camera: Screenshots:
 
 ![Modern UI/UX](/.github/images/img1.png "Modern UI/UX")
