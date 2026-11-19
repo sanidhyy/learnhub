@@ -296,7 +296,7 @@ Useful resources and dependencies that are used in LearnHub.
 - [@mux/mux-node](https://www.npmjs.com/package/@mux/mux-node): ^7.3.5
 - [@mux/mux-player-react](https://www.npmjs.com/package/@mux/mux-player-react): ^2.9.1
 - [@prisma/client](https://www.npmjs.com/package/@prisma/client): ^5.7.1
-- [@radix-ui/react-alert-dialog](https://www.npmjs.com/package/@radix-ui/react-alert-dialog): ^1.1.15
+- [@radix-ui/react-alert-dialog](https://www.npmjs.com/package/@radix-ui/react-alert-dialog): ^1.2.1
 - [@radix-ui/react-checkbox](https://www.npmjs.com/package/@radix-ui/react-checkbox): ^1.3.3
 - [@radix-ui/react-dialog](https://www.npmjs.com/package/@radix-ui/react-dialog): ^1.1.15
 - [@radix-ui/react-dropdown-menu](https://www.npmjs.com/package/@radix-ui/react-dropdown-menu): ^2.1.16
